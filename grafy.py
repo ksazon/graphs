@@ -6,7 +6,7 @@ global nodesNum
 nodesNum = int(raw_input("Podaj ilosc wierzcholkow: "))
 
 assert nodesNum > 1, "Podaj liczbe wieksza od 1"
-
+# testowy kommm
 
 def degree(nodesPair):
     if nodesPair == ['0', '0']:
