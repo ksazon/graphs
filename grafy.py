@@ -3,22 +3,32 @@ import networkx as nx
 from string import ascii_uppercase
 
 
+def graphInput():
+    while True:
+        nodesPair = raw_input(": ")
+        if nodesPair[0] == '0':
+            degreesPrint()
+            break
+        nodesPair = nodesPair.upper()
+        print nodesPair
+        G.add_edge(*nodesPair)
+        degree(nodesPair)
+
+
 def degree(nodesPair):
     nodeName = nodesPair[0]
     G.node[nodeName] += 1
     nodeName = nodesPair[1]
     G.node[nodeName] += 1
-    # return G
 
 
 def degreesPrint():
     degrees = []
-    print "Stopnie wierzcholkow to:"
+    print "\nStopnie wierzcholkow to:"
     for node in sorted(G.nodes()):
         print "deg(", node, ")", " = ", G.node[node]
         degrees.append(G.node[node])
-    print "Jest to graf", max(degrees), "stopnia"
-    # return G
+    print "\nJest to graf", max(degrees), "stopnia"
 
 
 def graphics():
@@ -50,16 +60,8 @@ G.add_nodes_from(letters)
 for i in G.nodes():
     G.node[i] = 0
 
-print "Wierzchoki to: ", sorted(G.nodes())
+print "Wierzchoki to:\n", sorted(G.nodes())
 print "Podaj miedzy ktorymi wierzcholkami istnieje krawedz (np. ac)"
-print "Po wprowadzeniu wszystkich wprowadz 0, enter"
+print "Po wprowadzeniu wszystkich wprowadz 0, enter\n"
 
-while True:
-    nodesPair = raw_input(": ")
-    if nodesPair[0] == '0':
-        degreesPrint()
-        break
-    nodesPair = nodesPair.upper()
-    print nodesPair
-    G.add_edge(*nodesPair)
-    degree(nodesPair)
+graphInput()
