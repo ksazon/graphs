@@ -23,6 +23,20 @@ def degree(nodesPair):
     H.node[nodeName] += 1
     return H
 
+
+def graphics():
+    # positions for all nodes
+    pos = nx.spring_layout(G)
+    # nodes
+    nx.draw_networkx_nodes(G, pos, node_size=700)
+    # edges
+    nx.draw_networkx_edges(G, pos, width=6)
+    nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
+    plt.axis('off')
+    # save as png
+    plt.savefig("graph.png")
+    plt.show()
+
 letters = []
 G = nx.Graph()
 global H
@@ -53,20 +67,3 @@ while True:
     print nodesPair
     G.add_edge(*nodesPair)
     degree(nodesPair)
-
-print(G.nodes())
-print(G.edges())
-
-pos = nx.spring_layout(G)  # positions for all nodes
-
-# nodes
-nx.draw_networkx_nodes(G, pos, node_size=700)
-
-# edges
-nx.draw_networkx_edges(G, pos, width=6)
-
-nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
-
-plt.axis('off')
-plt.savefig("graph.png")  # save as png
-plt.show()
