@@ -8,6 +8,7 @@ def graphInput():
         nodesPair = raw_input(": ")
         if nodesPair[0] == '0':
             degreesPrint()
+            graphics()
             break
         nodesPair = nodesPair.upper()
         print nodesPair
@@ -41,7 +42,7 @@ def graphics():
     nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
     plt.axis('off')
     # save as png
-    plt.savefig("graph.png")
+    plt.savefig("graf.png")
     plt.show()
 
 
