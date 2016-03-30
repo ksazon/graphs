@@ -45,7 +45,21 @@ def graphics():
     plt.axis('off')
     # save as png
     plt.savefig("graf.png")
-    plt.show()
+    # plt.show()
+
+
+def nodesEven():
+    for n in G.nodes():
+        if G.node[n]%2 == 1:
+            return False
+        return True
+
+def connectedGraph():
+    GNodesCopy = G.nodes()
+    lista = []
+    for i in range(len(GNodesCopy)):
+        lista.append([GNodesCopy[i], 0])
+    print lista
 
 
 global nodesNum
@@ -68,3 +82,5 @@ print "Podaj miedzy ktorymi wierzcholkami istnieje krawedz (np. ac)"
 print "Po wprowadzeniu wszystkich wprowadz 0, enter\n"
 
 graphInput()
+print 'dupa'
+connectedGraph()
