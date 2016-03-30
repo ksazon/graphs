@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 from string import ascii_uppercase
-
+# nonsens
 
 def graphInput():
     while True:
@@ -11,7 +11,9 @@ def graphInput():
             graphics()
             break
         nodesPair = nodesPair.upper()
-        print nodesPair
+        print (nodesPair)
+        # assert nodesPair[0] != nodesPair[1], "Podajesz ta sama krawedz - obecna wersja nie obsluguje petli"
+        assert nodesPair[0] and nodesPair[1] in G.nodes(), "Podaj wierzcholki z zakresu podanego powyzej"
         G.add_edge(*nodesPair)
         degree(nodesPair)
 
