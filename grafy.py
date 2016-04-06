@@ -3,6 +3,7 @@ import networkx as nx
 from string import ascii_uppercase
 # nonsens
 
+
 def graphInput():
     while True:
         nodesPair = raw_input(": ")
@@ -12,8 +13,8 @@ def graphInput():
             break
         nodesPair = nodesPair.upper()
         print (nodesPair)
-        # assert nodesPair[0] != nodesPair[1], "Podajesz ta sama krawedz - obecna wersja nie obsluguje petli"
-        assert nodesPair[0] and nodesPair[1] in G.nodes(), "Podaj wierzcholki z zakresu podanego powyzej"
+        assert nodesPair[0] and nodesPair[1] in G.nodes(), \
+        "Podaj wierzcholki z zakresu podanego powyzej"
         G.add_edge(*nodesPair)
         degree(nodesPair)
 
@@ -50,16 +51,25 @@ def graphics():
 
 def nodesEven():
     for n in G.nodes():
-        if G.node[n]%2 == 1:
+        if G.node[n] % 2 == 1:
             return False
         return True
 
+
 def connectedGraph():
+    if not nodesEven(): print \
+    "Istnieja nieparzyste wierzcholki - nie jest to graf Eulerowski"
     GNodesCopy = G.nodes()
+    print GNodesCopy
+
+    print "node0 ", G.neighbors('A')
     lista = []
     for i in range(len(GNodesCopy)):
         lista.append([GNodesCopy[i], 0])
     print lista
+    print lista[0][0]
+
+
 
 
 global nodesNum
@@ -82,5 +92,4 @@ print "Podaj miedzy ktorymi wierzcholkami istnieje krawedz (np. ac)"
 print "Po wprowadzeniu wszystkich wprowadz 0, enter\n"
 
 graphInput()
-print 'dupa'
 connectedGraph()
