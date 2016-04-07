@@ -28,11 +28,11 @@ def degree(nodesPair):
 
 def degreesPrint():
     degrees = []
-    print "\nStopnie wierzcholkow to:"
+    # print "\nStopnie wierzcholkow to:"
     for node in sorted(G.nodes()):
-        print "deg(", node, ")", " = ", G.node[node]
+        # print "deg(", node, ")", " = ", G.node[node]
         degrees.append(G.node[node])
-    print "\nJest to graf", max(degrees), "stopnia"
+    # print "\nJest to graf", max(degrees), "stopnia"
 
 
 def graphics():
@@ -56,32 +56,23 @@ def nodesEven():
             ans = False
             break
     if ans is False:
+        print "********************"
         print "Istnieja nieparzyste wierzcholki - nie jest to graf Eulerowski"
+        print "********************"
     else:
         connectedGraph()
 
 
 def DFSVisit(node):
     for innerNode in G.neighbors(node):
-        print "2", innerNode
-        print "wizy: ", visited
+        # print "2", innerNode
+        # print "wizy: ", visited
         if innerNode not in visited:
             visited.append(innerNode)
             DFSVisit(innerNode)
 
 
 def connectedGraph():
-    # GNodesCopy = G.nodes()
-    # print GNodesCopy
-    # stack = []
-
-
-    # for node in G.nodes():
-    #     print "1", node
-    #     if node not in visited:
-    #         visited.append(node)
-    #         DFSVisit(node)
-
     visited.append('A')
     DFSVisit('A')
 
@@ -91,22 +82,13 @@ def connectedGraph():
             ans = 1
             break
     if ans == 0:
-        print "jo"
+        print "********************"
+        print "Jest to piekny graf - Eulerowski"
+        print "********************"
     else:
-        print "niet"
-
-
-# print "node0neighbors ", G.neighbors('A')
-#
-#
-#     lista = []
-#     for i in range(len(GNodesCopy)):
-#         lista.append([GNodesCopy[i], 0])
-#     print lista
-#     print lista[0][0]
-#
-#
-#
+        print "********************"
+        print "Graf nie jest spojny - nie jest to graf Eulerowski"
+        print "********************"
 
 global nodesNum
 nodesNum = int(raw_input("Podaj ilosc wierzcholkow: "))
