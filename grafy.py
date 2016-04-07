@@ -14,7 +14,7 @@ def graphInput():
         nodesPair = nodesPair.upper()
         print (nodesPair)
         assert nodesPair[0] and nodesPair[1] in G.nodes(), \
-        "Podaj wierzcholki z zakresu podanego powyzej"
+            "Podaj wierzcholki z zakresu podanego powyzej"
         G.add_edge(*nodesPair)
         degree(nodesPair)
 
@@ -50,27 +50,63 @@ def graphics():
 
 
 def nodesEven():
+    ans = True
     for n in G.nodes():
         if G.node[n] % 2 == 1:
-            return False
-        return True
+            ans = False
+            break
+    if ans is False:
+        print "Istnieja nieparzyste wierzcholki - nie jest to graf Eulerowski"
+    else:
+        connectedGraph()
+
+
+def DFSVisit(node):
+    for innerNode in G.neighbors(node):
+        print "2", innerNode
+        print "wizy: ", visited
+        if innerNode not in visited:
+            visited.append(innerNode)
+            DFSVisit(innerNode)
 
 
 def connectedGraph():
-    if not nodesEven(): print \
-    "Istnieja nieparzyste wierzcholki - nie jest to graf Eulerowski"
-    GNodesCopy = G.nodes()
-    print GNodesCopy
-
-    print "node0 ", G.neighbors('A')
-    lista = []
-    for i in range(len(GNodesCopy)):
-        lista.append([GNodesCopy[i], 0])
-    print lista
-    print lista[0][0]
+    # GNodesCopy = G.nodes()
+    # print GNodesCopy
+    # stack = []
 
 
+    # for node in G.nodes():
+    #     print "1", node
+    #     if node not in visited:
+    #         visited.append(node)
+    #         DFSVisit(node)
 
+    visited.append('A')
+    DFSVisit('A')
+
+    ans = 0
+    for letter in G.nodes():
+        if letter not in visited:
+            ans = 1
+            break
+    if ans == 0:
+        print "jo"
+    else:
+        print "niet"
+
+
+# print "node0neighbors ", G.neighbors('A')
+#
+#
+#     lista = []
+#     for i in range(len(GNodesCopy)):
+#         lista.append([GNodesCopy[i], 0])
+#     print lista
+#     print lista[0][0]
+#
+#
+#
 
 global nodesNum
 nodesNum = int(raw_input("Podaj ilosc wierzcholkow: "))
@@ -82,6 +118,8 @@ for i in range(nodesNum):
     letters.append(letter)
 
 global G
+global visited
+visited = []
 G = nx.Graph()
 G.add_nodes_from(letters)
 for i in G.nodes():
@@ -92,4 +130,4 @@ print "Podaj miedzy ktorymi wierzcholkami istnieje krawedz (np. ac)"
 print "Po wprowadzeniu wszystkich wprowadz 0, enter\n"
 
 graphInput()
-connectedGraph()
+nodesEven()
