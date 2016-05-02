@@ -1,9 +1,6 @@
 import matplotlib.pyplot as plt
-# from matplotlib.pyplot import cm
 import networkx as nx
-# import operator
 from string import ascii_uppercase
-# nonsens
 
 
 def graphInput():
@@ -11,8 +8,8 @@ def graphInput():
         nodesPair = raw_input(": ")
         if nodesPair[0] == '0':
             degreesPrint()
-            # graphics()
             break
+
         nodesPair = nodesPair.upper()
         print (nodesPair)
         assert nodesPair[0] and nodesPair[1] in G.nodes(), \
@@ -52,7 +49,6 @@ def degree(nodesPair):
 
 def degreesPrint():
     degrees = []
-    # print "\nStopnie wierzcholkow to:"
     for node in sorted(G.nodes()):
         # print "deg(", node, ")", " = ", G.node[node]
         degrees.append(G.node[node])
@@ -63,15 +59,15 @@ def graphics():
     # positions for all nodes
     pos = nx.spring_layout(G)
     # nodes
-    #color=iter(cm.rainbow(np.linspace(0,1,n)))
-    for c in ['r', 'b', 'g', 'k', 'm']:
-        nx.draw_networkx_nodes(G, pos, node_color=c, node_size=700)
+    # for c in ['r', 'b', 'g', 'k', 'm']:
+    nx.draw_networkx_nodes(G, pos, node_size=700)
     # edges
     nx.draw_networkx_edges(G, pos, width=6)
     labels = {}
-    for node in G.nodes():
-        labels[0] = r'G.node[iNode]['color']'
-        nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
+    for iNode in G.nodes():
+        color = G.node[iNode]['color']
+        labels[iNode] = color
+    nx.draw_networkx_labels(G, pos, labels=labels, font_size=20, font_family='sans-serif')
     plt.axis('off')
     # save as png
     plt.savefig("graf.png")
@@ -79,7 +75,6 @@ def graphics():
 
 
 def nodesEven():
-    # ans = True
     unbillicalCount = 0
     for n in G.nodes():
         if G.node[n] % 2 == 1:
@@ -96,9 +91,6 @@ def nodesEven():
 
 def DFSVisit(node):
     for innerNode in G.neighbors(node):
-        # print "2", innerNode
-        # print "wizy: ", visited
-        # print "odwiedzany teraz:
         if innerNode not in visited:
             visited.append(innerNode)
             DFSVisit(innerNode)
@@ -124,33 +116,28 @@ def connectedGraph():
 
 
 def coloring():
-    # H = nx.Graph()
-    # H = G
     for i in G.nodes():
         G.node[i]['color'] = -1
-        # value for (key, value) in sorted(numbers.items())
     for i in G.nodes():
         print G.node[i]['color']
-    # G.node['C']['color'] = 4
 
-    print "g.nodes()", G.nodes()
-    print "g", G
-    print "g.nodesdata", G.nodes(data=True)
+    # print "g.nodes()", G.nodes()
+    # print "g", G
+    # print "g.nodesdata", G.nodes(data=True)
+
     for node in sorted(G.nodes(data=True), key=lambda n: n[1]['deg'], reverse=True):
         iNode = node[0]
-        # print "gino", G.node[node][0], G.node[node][1]['deg']
         neighborsColors = []
         for iiNode in G.neighbors(iNode):
             neighborsColors.append(G.node[iiNode]['color'])
             # print iNode, G.node[iNode][]
-        print neighborsColors
+        # print neighborsColors
         for i in range(G.number_of_nodes()):
             if i not in neighborsColors:
                 G.node[iNode]['color'] = i
                 break
 
-        print "inode = ", iNode, " i = ", i, "g neib = ", G.neighbors(iNode)
-
+        # print "inode = ", iNode, " i = ", i, "g neib = ", G.neighbors(iNode)
 
 
         # for moreInnerNode in H.neighbors(innerNode):
