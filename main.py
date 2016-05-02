@@ -42,9 +42,9 @@ def dummy():
 
 def degree(nodesPair):
     nodeName = nodesPair[0]
-    G.node[nodeName] += 1
+    G.node[nodeName]['deg'] += 1
     nodeName = nodesPair[1]
-    G.node[nodeName] += 1
+    G.node[nodeName]['deg'] += 1
 
 
 def degreesPrint():
@@ -65,7 +65,7 @@ def graphics():
     nx.draw_networkx_edges(G, pos, width=6)
     labels = {}
     for iNode in G.nodes():
-        color = G.node[iNode]['color']
+        color = str(iNode) + str(G.node[iNode]['color'])
         labels[iNode] = color
     nx.draw_networkx_labels(G, pos, labels=labels, font_size=20, font_family='sans-serif')
     plt.axis('off')
@@ -139,13 +139,14 @@ def coloring():
 
         # print "inode = ", iNode, " i = ", i, "g neib = ", G.neighbors(iNode)
 
-
         # for moreInnerNode in H.neighbors(innerNode):
         #     if H.node[innerNode] <= H.node[moreInnerNode]:
         #         H.node[innerNode] = H.node[moreInnerNode] + 1
 
     for iNode in sorted(G.nodes()):
         print iNode, " = ", G.node[iNode]['color']
+
+    graphics()
 
 
 global nodesNum
@@ -170,7 +171,8 @@ print "Wierzchoki to:\n", sorted(G.nodes())
 print "Podaj miedzy ktorymi wierzcholkami istnieje krawedz (np. ac)"
 print "Po wprowadzeniu wszystkich wprowadz 0, enter\n"
 
-# graphInput()
-dummy()
+graphInput()
+coloring()
+# dummy()
 # nodesEven()
 # print nx.is_eulerian(G)
